@@ -44,8 +44,12 @@ public class Hero : MonoBehaviour
     public float rollMult = -45;
     public float pitchMult = 30;
 
+    [Space(10)]
 
-
+    [Space(10)]
+    [Header("Projectile Settings")]
+    public GameObject projectilePrefab; //prefab object of projectile
+    public float projectileSpeed = 40; //speed of projectile
     [Space(10)]
 
     private GameObject lastTriggerGo; //reference to the last triggering game object
