@@ -44,4 +44,27 @@ public class ObjectPool : MonoBehaviour
             projectileGO.SetActive(false);//hide projectile
         }//end for(int i = 0; i < poolStartSize; i++)
     }//end Start()
+
+    public GameObject GetObject()
+    {
+        //If there are objects in the pool
+        if (projectiles.Count > 0)
+        {
+            GameObject gObject = projectiles.Dequeue(); //remove from queue
+            gObject.SetActive(true); //enable
+            return gObject; //return object
+        }
+        else
+        {
+            Debug.LogWarning("Out of objects, reloading...");
+            return null; //return null
+        }//end if(projecitles.Count > 0)
+    }//end GetProjectile()
+
+    public void ReturnObject(GameObject gObject)
+    {
+        projectiles.Enqueue(gObject); //add back to queue
+        gObject.SetActive(false); //disable
+    }//end ReturnProjectile()
 }
+#endregion
