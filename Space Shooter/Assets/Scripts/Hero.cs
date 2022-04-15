@@ -51,6 +51,8 @@ public class Hero : MonoBehaviour
     [Space(10)]
     [Header("Projectile Settings")]
     public float projectileSpeed = 40; //speed of projectile
+    public AudioClip projectSound; //sound clip of projectile
+    private AudioSource audioSource; //the audio source of the game object
     [Space(10)]
 
     private GameObject lastTriggerGo; //reference to the last triggering game object
@@ -93,6 +95,7 @@ public class Hero : MonoBehaviour
     {
         gm = GameManager.GM; //find the game manager
         pool = ObjectPool.POOL; //find the game manager
+        audioSource = GetComponent<AudioSource>(); //get refrence to audio source
     }//end Start()
    
     // Update is called once per frame (page 551)
@@ -116,6 +119,11 @@ public class Hero : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             FireProjectile();//call the FireProjectile method
+                             //If there is an audio source
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(projectSound); //play projectileSound
+            }
         }
 
     }//end Update()
