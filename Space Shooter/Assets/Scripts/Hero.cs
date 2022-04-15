@@ -39,6 +39,8 @@ public class Hero : MonoBehaviour
 
     GameManager gm; //reference to game manager
 
+    ObjectPool pool; //refence to Object Pool
+
     [Header("Ship Movement")]
     public float speed = 10;
     public float rollMult = -45;
