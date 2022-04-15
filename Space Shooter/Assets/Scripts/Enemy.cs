@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
         if (otherGo.tag == "Projectile Hero")
         {
             Debug.Log("Enemy hit by projectile " + otherGo.name);
-
+            otherGo.SetActive(false); //set the project to deactivate and return to pool
             Destroy(otherGo); //Destory projectile
             GameManager.GM.UpdateScore(score);//add to score
             Destroy(gameObject); //destroy self
