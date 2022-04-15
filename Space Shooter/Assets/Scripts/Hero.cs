@@ -112,6 +112,12 @@ public class Hero : MonoBehaviour
         //Rotate the ship to make it feel more dynamic
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
 
+        //check for space bar (fire)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            FireProjectile();//call the FireProjectile method
+        }
+
     }//end Update()
 
 
@@ -135,5 +141,14 @@ public class Hero : MonoBehaviour
             Debug.Log("Triggered by non-Enemy " + other.gameObject.name);
         }
     }//end OnTriggerEnter()
+
+    //Shoot projectile
+    void FireProjectile()
+    {
+        GameObject projectile = Instantiate<GameObject>(projectilePrefab); //instaniate the projectile
+        projectile.transform.position = transform.position; //set position to the ships position
+        Rigidbody rb = projectile.GetComponent<Rigidbody>();//get the rigidbody of the projectile
+        rb.velocity = Vector3.up * projectileSpeed; //use velocity to move the projectile
+    }//end FireProjectile()
 
 }
